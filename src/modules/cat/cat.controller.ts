@@ -1,14 +1,11 @@
 import { Body, Controller, Get, Post, Req } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { ICatService } from './interface/catService.interface';
+import { CatService } from './service/cat.service';
 
 @Controller('cat')
 export class CatController {
-  private readonly catService: ICatService;
-
-  constructor(catsService: ICatService) {
-    this.catService = catsService;
-  }
+  constructor(private readonly catService: CatService) {}
 
   @Get()
   findAll(@Req() request: Request): string {
